@@ -1,0 +1,132 @@
+.node {
+    width: 20px;
+    height: 20px;
+    outline: 1px solid rgb(178, 217, 233);
+    display: inline-block;
+    margin-bottom: -2px;
+}
+
+.node-start {
+    animation-name: startAnimation;
+    animation-duration: 1.7s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: inherit;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running; 
+}
+
+@keyframes startAnimation {
+    0% {
+        transform: scale(0.3);
+        background-color: darkred;
+        border-radius: 100%;
+    }
+
+    50% {
+        transform: scale(1.5);
+        background-color: firebrick;
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: red;
+    }
+}
+
+.node-end{
+    animation-name: endAnimation;
+    animation-duration: 1.7s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: inherit;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running; 
+}
+
+
+@keyframes endAnimation {
+    0% {
+        transform: scale(0.3);
+        background-color: rebeccapurple;
+        border-radius: 100%;
+    }
+
+    50% {
+        transform: scale(1.5);
+        background-color: blueviolet
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: orchid;
+    }
+}
+
+.node-path{
+    animation-name: pathAnimation;
+    animation-duration: 1.7s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: inherit;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running; 
+}
+
+@keyframes pathAnimation {
+    0% {
+        transform: scale(0.3);
+        background-color: red;;
+        border-radius: 100%;
+    }
+
+    50% {
+        transform: scale(1.5);
+        background-color: orange;
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: yellow;
+    }
+}
+
+.node-animating {
+    animation-name: searchAnimation;
+    animation-duration: 1.3s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: inherit;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes searchAnimation {
+    0% {
+        transform: scale(0.3);
+        background-color: dodgerblue;
+        border-radius: 100%;
+    }
+
+    50% {
+        background-color: deepskyblue;
+    }
+
+    75% {
+        transform: scale(1.5);
+        background-color: darkturquoise;
+    }
+
+    100% {
+        transform: scale(1);
+        background-color: skyblue;
+    }
+}
+
+.node-wall {
+    background-color: dimgrey;
+}
