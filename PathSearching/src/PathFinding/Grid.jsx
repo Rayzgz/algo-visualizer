@@ -17,6 +17,8 @@ export class Node {
 		this.isWall = false;
 		this.predecessor = undefined;
 		this.distance = Infinity;
+		this.heuristic = Infinity;
+		this.cost = Infinity;
 	}
 }
 
