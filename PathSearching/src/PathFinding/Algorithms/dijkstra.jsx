@@ -45,13 +45,13 @@ export default function dijkstra(grid, startNode, endNode) {
 		const neighbors = getNeighbors(grid, closestNode);
 
 		for (const neighbor of neighbors) {
-			neighbor.distance = closestNode.distance + 1;
+			neighbor.distance = closestNode.distance + distance(closestNode, neighbor);
 			neighbor.predecessor = grid[closestNode.row][closestNode.col];
 		}
 	}
 }
 
-function getNeighbors(grid, closestNode) {
+export function getNeighbors(grid, closestNode) {
 	const neighbors = [];
 	const row = closestNode.row;
 	const col = closestNode.col;
@@ -70,8 +70,12 @@ function getNeighbors(grid, closestNode) {
 	return neighbors.filter(neighbor => !neighbor.visited);
 }
 
-function getMinDistance(unvisited) {
+export function getMinDistance(unvisited) {
 	unvisited.sort((nodeA, nodeB) => nodeB.distance - nodeA.distance);
 	const min = unvisited.pop();
 	return min;
+}
+
+export function distance(nodeA, nodeB){
+	return Math.abs(nodeA.row - nodeB.row) + Math.abs(nodeA.col - nodeB.col);
 }

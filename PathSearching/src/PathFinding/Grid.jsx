@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NodeBox } from "./Node/NodeBox";
 import dijkstra from "./Algorithms/dijkstra";
+import astar from "./Algorithms/astar";
 
 import "./Grid.css";
 
@@ -122,6 +123,47 @@ export default class Grid extends Component {
 		this.animatePath();
 	}
 
+	async animateAstar() {
+		document.getElementById(
+			`node-${this.state.startNode.row}-${this.state.startNode.col}`
+		).className = "node node";
+		setTimeout(() => {
+			document.getElementById(
+				`node-${this.state.startNode.row}-${this.state.startNode.col}`
+			).className = "node node-start";
+		}, 20);
+
+		const visitedInOrder = astar(
+			this.state.grid,
+			this.state.startNode,
+			this.state.endNode
+		);
+		const animatingNodes = [];
+		for (let i = 0; i < visitedInOrder.length; i++) {
+			const node = visitedInOrder[i];
+			if (
+				(node.row === this.state.startNode.row &&
+					node.col === this.state.startNode.col) ||
+				(node.row === this.state.endNode.row &&
+					node.col === this.state.endNode.col)
+			) {
+				continue;
+			}
+			animatingNodes.push(
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						document.getElementById(
+							`node-${node.row}-${node.col}`
+						).className = "node node-animating";
+						resolve();
+					}, 20 * i);
+				})
+			);
+		}
+		await Promise.all(animatingNodes);
+		this.animatePath();
+	}
+
 	componentDidMount() {
 		const nodes = [];
 		for (let i = 0; i < 20; i++) {
@@ -200,10 +242,19 @@ export default class Grid extends Component {
 
 		return (
 			<>
-				<button onClick={() => this.animateDijkstra()}>
-					Visualize Dijkstra's Algorithm
-				</button>
-				<button onClick={() => this.resetBoard()}>Reset</button>
+				<div>				
+					<button onClick={() => this.animateDijkstra()}>
+					Dijkstra's Algorithm
+					</button>
+				</div>
+				<div>
+				<button onClick={() => this.animateAstar()}>
+					A* Algorithm
+					</button>
+				</div>
+				<div>
+					<button onClick={() => this.resetBoard()}>Reset</button>
+				</div>
 				<div className="grid">
 					{grid.map((row, row_index) => {
 						return (
