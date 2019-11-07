@@ -18,7 +18,6 @@ export default function dijkstra(grid, startNode, endNode) {
 		// the closest node from now
 		const closestNode = getMinDistance(unvisited);
 
-		console.log(closestNode);
 		// closest is a wall
 		if (closestNode.isWall) {
 			continue;

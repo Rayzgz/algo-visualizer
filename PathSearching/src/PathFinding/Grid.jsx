@@ -95,11 +95,11 @@ export default class Grid extends Component {
 			).className = "node node-start";
 		}, 20);
 
-		const visitedInOrder = dijkstra(
+		const visitedInOrder = [ ...new Set(dijkstra(
 			this.state.grid,
 			this.state.startNode,
 			this.state.endNode
-		);
+		))];
 		const animatingNodes = [];
 		for (let i = 0; i < visitedInOrder.length; i++) {
 			const node = visitedInOrder[i];
@@ -109,6 +109,13 @@ export default class Grid extends Component {
 				(node.row === this.state.endNode.row &&
 					node.col === this.state.endNode.col)
 			) {
+				continue;
+			}
+
+			if(document.getElementById(
+				`node-${node.row}-${node.col}`
+			).className === "node node-animating"){
+				console.log('repeat');
 				continue;
 			}
 			animatingNodes.push(
@@ -145,11 +152,11 @@ export default class Grid extends Component {
 			).className = "node node-start";
 		}, 20);
 
-		const visitedInOrder = astar(
+		const visitedInOrder = [...new Set(astar(
 			this.state.grid,
 			this.state.startNode,
 			this.state.endNode
-		);
+		))];
 		const animatingNodes = [];
 		for (let i = 0; i < visitedInOrder.length; i++) {
 			const node = visitedInOrder[i];

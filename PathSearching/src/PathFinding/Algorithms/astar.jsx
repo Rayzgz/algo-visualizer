@@ -58,8 +58,6 @@ export default function astar(grid, startNode, endNode) {
             neighbor.heuristic = heuristic(neighbor, endNode);
             neighbor.cost = g + neighbor.heuristic;
             open.push(neighbor);
-
-
         }
         
 
