@@ -6,7 +6,7 @@ export default function astar(grid, startNode, endNode) {
     // NOTE: distance = (distance from start to cur) + (heuristic from cur to end) 
     startNode.distance = 0;
     startNode.heuristic = heuristic(startNode, endNode);
-    startNode.cost = 0 + startNode.heuristic;
+    startNode.cost = startNode.heuristic;
     open.push(startNode);
 
     while(open.length > 0){
