@@ -122,6 +122,14 @@ export default class Grid extends Component {
 			);
 		}
 		await Promise.all(animatingNodes);
+		document.getElementById(
+			`node-${this.state.endNode.row}-${this.state.endNode.col}`
+		).className = "node node";
+		setTimeout(() => {
+			document.getElementById(
+				`node-${this.state.endNode.row}-${this.state.endNode.col}`
+			).className = "node node-end";
+		}, 20);
 		this.animatePath();
 	}
 
@@ -162,8 +170,18 @@ export default class Grid extends Component {
 				})
 			);
 		}
-		await Promise.all(animatingNodes);
+		await Promise.all(animatingNodes);		
+
+		document.getElementById(
+			`node-${this.state.endNode.row}-${this.state.endNode.col}`
+		).className = "node node";
+		setTimeout(() => {
+			document.getElementById(
+				`node-${this.state.endNode.row}-${this.state.endNode.col}`
+			).className = "node node-end";
+		}, 20);
 		this.animatePath();
+
 	}
 
 	componentDidMount() {
