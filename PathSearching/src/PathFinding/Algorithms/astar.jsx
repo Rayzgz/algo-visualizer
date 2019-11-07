@@ -9,9 +9,8 @@ export default function astar(grid, startNode, endNode) {
     startNode.cost = 0 + startNode.heuristic;
     open.push(startNode);
 
-    while( open.length > 0){
+    while(open.length > 0){
 
-        console.log(open.length);
         // the node with lowest cost
         const closestNode = getMinCost(open);
 
@@ -22,7 +21,6 @@ export default function astar(grid, startNode, endNode) {
 
         // distance is inf, no valid path, return empty array
 		if (closestNode.cost === Infinity) {
-            console.log('out')
             return visitedInOrder;
 		}
 
@@ -49,10 +47,7 @@ export default function astar(grid, startNode, endNode) {
             
             // not on open list, add it to open list
             // record f,g,h
-            if(!open.includes(neighbor)){
-                open.push(neighbor);
-
-            } else {    // on open already
+            if (open.includes(neighbor)) {    // on open already
                 if(neighbor.distance <= g){
                     continue;
                 }
@@ -62,6 +57,8 @@ export default function astar(grid, startNode, endNode) {
             neighbor.distance = g;
             neighbor.heuristic = heuristic(neighbor, endNode);
             neighbor.cost = g + neighbor.heuristic;
+            open.push(neighbor);
+
 
         }
         

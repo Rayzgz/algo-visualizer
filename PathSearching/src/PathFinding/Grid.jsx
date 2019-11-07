@@ -85,6 +85,7 @@ export default class Grid extends Component {
 	}
 
 	async animateDijkstra() {
+		await this.resetBoard(true);
 		document.getElementById(
 			`node-${this.state.startNode.row}-${this.state.startNode.col}`
 		).className = "node node";
@@ -134,6 +135,7 @@ export default class Grid extends Component {
 	}
 
 	async animateAstar() {
+		await this.resetBoard(true);
 		document.getElementById(
 			`node-${this.state.startNode.row}-${this.state.startNode.col}`
 		).className = "node node";
@@ -233,10 +235,15 @@ export default class Grid extends Component {
 		});
 	}
 
-	resetBoard() {
+	async resetBoard(keepWall) {
 		const newGrid = this.state.grid;
 		for (let row = 0; row < newGrid.length; row++) {
-			for (let col = 0; col < this.state.grid[0].length; col++) {
+			for (let col = 0; col < newGrid[0].length; col++) {
+				if(keepWall){
+					if(newGrid[row][col].isWall){
+						continue;
+					}
+				}
 				document.getElementById(`node-${row}-${col}`).className =
 					"node node";
 				newGrid[row][col] = new Node(row, col);
@@ -255,6 +262,8 @@ export default class Grid extends Component {
 		document.getElementById(
 			`node-${this.state.endNode.row}-${this.state.endNode.col}`
 		).className = "node node-end";
+
+		return 1;
 	}
 
 	render() {
@@ -273,7 +282,7 @@ export default class Grid extends Component {
 					</button>
 				</div>
 				<div>
-					<button onClick={() => this.resetBoard()}>Reset</button>
+					<button onClick={() => this.resetBoard(false)}>Reset</button>
 				</div>
 				<div className="grid">
 					{grid.map((row, row_index) => {
