@@ -189,6 +189,7 @@ export default class Grid extends Component {
 				`node-${this.state.endNode.row}-${this.state.endNode.col}`
 			).className = "node node-end";
 		}, 20);
+		
 		this.animatePath();
 
 	}
