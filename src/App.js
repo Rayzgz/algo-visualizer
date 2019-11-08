@@ -5,9 +5,12 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <Grid></Grid>
-    </div>
+    <>
+      <div className = "App App-header"></div>
+      <div className="App">
+        <Grid></Grid>
+      </div>
+    </>
   );
 }
 
